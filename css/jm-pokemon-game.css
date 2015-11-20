@@ -1,0 +1,105 @@
+#pokemon-game-container, .pokemon-select-option {
+  box-sizing: border-box; }
+
+h2, #user-name, #submit-name, .input-error, .pokemon-select-option {
+  text-align: center; }
+
+html,
+body,
+.main-bg {
+  height: 100%;
+  width: 100%;
+  margin: 0; }
+
+.main-bg {
+  background: url("http://cdn.collider.com/wp-content/uploads/pokemon-pikachu.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  opacity: 0.25; }
+
+body {
+  font-family: Tahoma, Geneva, sans-serif; }
+
+.is-visible {
+  display: block !important; }
+
+.is-hidden {
+  display: none !important; }
+
+#pokemon-game-container {
+  background: #F2F2F2;
+  border: 1px solid #A4A4A4;
+  width: 450px;
+  height: 350px;
+  padding: 20px;
+  margin: 100px auto;
+  /* overflow:hidden; */ }
+
+#starting-pokemon-select, .input-error, #set-name {
+  display: none; }
+
+#submit-name, .pokemon-select-option {
+  cursor: pointer; }
+
+#user-name, #submit-name {
+  margin: 10px auto 20px;
+  display: block;
+  padding: 3px 10px; }
+
+.input-error {
+  color: red;
+  font-size: 12px; }
+
+/*---------------
+Pokemon Select
+-----------------*/
+.pokemon-select-option {
+  display: inline-block;
+  width: 32.5%;
+  border: 1px solid #A4A4A4;
+  border-radius: 2px;
+  padding: 20px; }
+  .pokemon-select-option img {
+    max-width: 80%;
+    height: auto; }
+  .pokemon-select-option span {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px; }
+  .pokemon-select-option:hover {
+    border: 1px solid black; }
+  .pokemon-select-option.charmander {
+    background-color: #FBF1E4; }
+  .pokemon-select-option.squirtle {
+    background-color: #DEEFF3; }
+  .pokemon-select-option.bulbasaur {
+    background-color: #E6F9F2; }
+
+.selected :not(.active).charmander, .selected :not(.active).squirtle, .selected :not(.active).bulbasaur {
+  background: none; }
+
+.pokemon-confirm-container .pokemon-btn {
+  padding: 5px 10px;
+  color: white;
+  background: gray;
+  text-decoration: none;
+  font-size: 90%;
+  margin: 0 5px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
+
+.selected .pokemon-select-option img {
+  opacity: 0.4; }
+.selected .pokemon-select-option.active img {
+  opacity: 1; }
+
+#chooseStarterPokemonError {
+  display: none;
+  margin-top: 30px; }
+
+/*# sourceMappingURL=jm-pokemon-game.css.map */

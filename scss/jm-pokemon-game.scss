@@ -1,0 +1,143 @@
+// DONT TIDY UP
+// UNFORMATS SASS COMMENTS
+
+
+// Variables
+
+// Placeholders
+
+%border-box {
+    box-sizing:border-box;
+}
+%text-center {
+    text-align:center;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -o-border-radius: $radius;
+  border-radius: $radius;
+}
+
+
+
+
+html,
+body,
+.main-bg {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.main-bg {
+  background: url("http://cdn.collider.com/wp-content/uploads/pokemon-pikachu.jpg");
+  background-size: cover;
+  background-position: center center;
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  opacity:0.25;
+}
+
+body {
+    font-family:Tahoma, Geneva, sans-serif;
+}
+
+h2, #user-name, #submit-name {
+    @extend %text-center;
+}
+
+.is-visible { display:block!important; }
+.is-hidden { display: none!important; }
+
+#pokemon-game-container {
+    background:#F2F2F2;
+    border:1px solid #A4A4A4;
+    width:450px;
+    height:350px;
+    padding:20px;
+    margin: 100px auto;
+    /* overflow:hidden; */
+    @extend %border-box;
+}
+#starting-pokemon-select, .input-error, #set-name {
+    display:none;
+}
+#submit-name, .pokemon-select-option {
+    cursor:pointer;
+}
+
+
+#user-name, #submit-name {
+    margin:10px auto 20px;
+    display: block;
+    padding:3px 10px;
+}
+
+.input-error {
+    color:red;
+    font-size:12px;
+    @extend %text-center;
+}
+
+
+/*---------------
+Pokemon Select
+-----------------*/
+.pokemon-select-option {
+    display: inline-block;
+    width: 32.5%;
+    border: 1px solid #A4A4A4;
+    border-radius: 2px;
+    padding: 20px;
+    @extend %border-box;
+    @extend %text-center;
+
+    img {
+        max-width: 80%;
+        height: auto;
+    }
+    span {
+        display:block;
+        font-size: 15px;
+        margin-bottom:10px;
+    }
+    &:hover {
+      border:1px solid black;
+    }
+    &.charmander { background-color: #FBF1E4; }
+    &.squirtle { background-color: #DEEFF3; }
+    &.bulbasaur { background-color: #E6F9F2; }
+}
+.selected {
+  :not(.active) {
+    &.charmander,
+    &.squirtle,
+    &.bulbasaur { background: none; }
+  }
+}
+
+.pokemon-confirm-container {
+  .pokemon-btn {
+    padding: 5px 10px;
+    color: white;
+    background: gray;
+    text-decoration: none;
+    font-size: 90%;
+    margin: 0 5px;
+    @include border-radius(2px);
+  }
+}
+
+
+.selected .pokemon-select-option {
+    img { opacity: 0.4; }
+    &.active img { opacity: 1; }
+}
+
+#chooseStarterPokemonError {
+  display:none;
+  margin-top: 30px;
+}
