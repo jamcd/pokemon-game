@@ -14,6 +14,7 @@
     var inputError = document.getElementsByClassName("input-error")[0];
     var starterPokemonOptions = document.getElementsByClassName("pokemon-select-option");
     var chooseStarterPokemonError = document.getElementById('chooseStarterPokemonError');
+    var profOakIntro = document.getElementById('prof-oak-intro');
     var player;
 
     // Should this be declared in the chooseStarterPokemon function?
@@ -141,7 +142,7 @@
                 if (/^[\s\w]{1,10}$/.test(userNameInput.value) && userNameInput.value.length <= 10) {
                     // Display the next step
                     pokemonSelectContainer.classList.add("is-visible");
-                    setNameContainer.classList.remove("is-visible");
+                    setNameContainer.removeAttribute('class');
                     player = new CurrentPlayer(userNameInput.value);
                     console.log("Player " + userNameInput.value + " added");
                     pokemonSelectContainer.className = 'is-visible';
@@ -159,8 +160,6 @@
           setNameContainer.className = 'is-visible';
           pokemonSelectContainer.className = 'is-hidden';
           return false;
-        } else {
-          setNameContainer.className = 'is-hidden';
         }
 
         // Make sure player hasn't already chosen pokemon
@@ -241,6 +240,9 @@
       };
       console.log(player.carriedPokemon);
       console.log(player);
+      profOakIntro.className = "is-visible";
+      pokemonSelectContainer.removeAttribute('class');
+      profOakRunIntro();
     };
 
     var declinedStarterPokemon = function() {
@@ -251,12 +253,42 @@
       for (var i = 0; i < starterPokemonOptions.length; i += 1) {
           starterPokemonOptions[i].addEventListener("click", chooseStarterPokemon, false); // Use event delegation?
       };
-    }
+    };
 
+    var profOakRunIntro = function() {
+      var profOakIntroBtn = profOakIntro.getElementsByClassName('next-text')[0];
+      var profOakText = profOakIntro.getElementsByClassName('prof-oak-text')[0];
+      var c = 0;
+      profOakIntroBtn.addEventListener('click', function() {
+        switch (c) {
+          case 0:
+            profOakText.textContent = "My name is Professor Oak.";
+            break;
+          case 1:
+            profOakText.textContent = "Please come to visit me at my home in Starterville. I have some important news for you!";
+            break;
+          case 2:
+            profOakText.textContent = "Many adventures await you, let's get going!";
+            break;
+          case 3:
+            profOakIntro.removeAttribute('class');
+            break;
+          default:
+            profOakText.textContent = "Now get on with your journey!";
+            break;
+        };
+        return c+=1;
+      }, false);
+    };
+
+
+    //-----------------------------------
+    // GENERAL FUNCTIONS
+    //-----------------------------------
 
     var removeAClass = function(theArray, className) {
       // Best way to pass a variable into a RegExp (use the RegExp constructor)
-      var regg = new RegExp('(?:^|\\s)' + className + '(?!\\S)', 'g');
+      var classRegExp = new RegExp('(?:^|\\s)' + className + '(?!\\S)', 'g');
       // REMEMBER: Needed to escape the backslashes on \s
       var i, arrayItemCount = theArray.length;
       // Confusion when I was removing the classname that the 'starterPokemonOptions' uses to collect itself
@@ -268,7 +300,7 @@
         // The array length needs to be static, so it doesn't change when the class is removed.
 
         // Remove matching classes
-        theArray[i].className = theArray[i].className.replace(regg, '' );
+        theArray[i].className = theArray[i].className.replace(classRegExp, '' );
         // Remove whitespace at the start of className
         theArray[i].className = theArray[i].className.replace(/^\s*/g, '' );
 

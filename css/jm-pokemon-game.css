@@ -1,9 +1,15 @@
 #pokemon-game-container, .pokemon-select-option {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
   box-sizing: border-box; }
 
 h2, #user-name, #submit-name, .input-error, .pokemon-select-option {
   text-align: center; }
 
+/*---------------
+General Styles
+-----------------*/
 html,
 body,
 .main-bg {
@@ -26,7 +32,8 @@ body {
 .is-visible {
   display: block !important; }
 
-.is-hidden {
+.is-hidden,
+.completed {
   display: none !important; }
 
 #pokemon-game-container {
@@ -38,7 +45,7 @@ body {
   margin: 100px auto;
   /* overflow:hidden; */ }
 
-#starting-pokemon-select, .input-error, #set-name {
+#starting-pokemon-select, .input-error, #set-name, #prof-oak-intro {
   display: none; }
 
 #submit-name, .pokemon-select-option {
@@ -52,6 +59,19 @@ body {
 .input-error {
   color: red;
   font-size: 12px; }
+
+.pokemon-btn {
+  display: inline-block;
+  padding: 5px 10px;
+  color: white;
+  background: gray;
+  text-decoration: none;
+  font-size: 90%;
+  margin: 0 5px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px; }
 
 /*---------------
 Pokemon Select
@@ -81,18 +101,6 @@ Pokemon Select
 .selected :not(.active).charmander, .selected :not(.active).squirtle, .selected :not(.active).bulbasaur {
   background: none; }
 
-.pokemon-confirm-container .pokemon-btn {
-  padding: 5px 10px;
-  color: white;
-  background: gray;
-  text-decoration: none;
-  font-size: 90%;
-  margin: 0 5px;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  -o-border-radius: 2px;
-  border-radius: 2px; }
-
 .selected .pokemon-select-option img {
   opacity: 0.4; }
 .selected .pokemon-select-option.active img {
@@ -101,5 +109,17 @@ Pokemon Select
 #chooseStarterPokemonError {
   display: none;
   margin-top: 30px; }
+
+/*---------------
+Pokemon Select
+-----------------*/
+#prof-oak-intro img {
+  max-height: 170px;
+  width: auto;
+  margin: 10px auto 30px;
+  display: block; }
+
+.prof-oak-text {
+  margin-bottom: 20px; }
 
 /*# sourceMappingURL=jm-pokemon-game.css.map */
