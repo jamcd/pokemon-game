@@ -3,39 +3,54 @@
 
   <div class="main-bg"></div>
 
-    <!-- Remove on JSFiddle -->
-    <link rel="stylesheet" href="css/jm-pokemon-game.css">
+  <!-- Remove on JSFiddle -->
+  <link rel="stylesheet" href="css/jm-pokemon-game.css">
 
-    <div id="pokemon-game-container">
-        <div id="set-name" class="is-visible">
-             <h2>Set your name</h2>
+  <div id="pokemon-game-container">
+    <div id="set-name" class="is-visible">
+      <h2>Set your name</h2>
+      <input type="text" id="user-name" />
+      <button id="submit-name">OK</button> <span class="input-error">Please enter a name between 1 and 12 characters long.<br> Special characters are not allowed.</span>
+    </div>
 
-            <input type="text" id="user-name" />
-            <button id="submit-name">OK</button> <span class="input-error">Please enter a name between 1 and 12 characters long.<br> Special characters are not allowed.</span>
+    <div id="starting-pokemon-select">
+      <h2>Select your Pokemon</h2>
+      <div class="pokemon-select-option charmander" id="select-charmander"> <span>Charmander</span>
+        <img alt="004Charmander.png" src="http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/96px-004Charmander.png" width="96" height="96" />
+      </div>
+      <div class="pokemon-select-option squirtle" id="select-squirtle"> <span>Squirtle</span>
+        <img alt="007Squirtle.png" src="http://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/144px-007Squirtle.png" width="96" height="96" />
+      </div>
+      <div class="pokemon-select-option bulbasaur" id="select-bulbasaur"> <span>Bulbasaur</span>
+        <img alt="001Bulbasaur.png" src="http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/96px-001Bulbasaur.png" width="96" height="96" />
+      </div>
+      <div id="chooseStarterPokemonError">Sorry, you have already chosen your starting Pokemon.</div>
+    </div>
 
+    <div id="prof-oak-intro">
+      <img src="http://cdn.bulbagarden.net/upload/8/84/Professor_Oak_XY.png" alt="Professor Oak" width="188" height="342" />
+      <div class="prof-oak-text">
+        Hi there. Welcome to the world of Pokemon!
+      </div>
+      <a href="#" class="next-text pokemon-btn">Next</a>
+    </div>
+
+    <div id="battle">
+      <div id="enemy-pokemon">
+        <div class="hp">
+          <span class="current-hp"></span>
         </div>
-        <div id="starting-pokemon-select">
-             <h2>Select your Pokemon</h2>
-
-            <div class="pokemon-select-option charmander" id="select-charmander"> <span>Charmander</span>
-                <img alt="004Charmander.png" src="http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/96px-004Charmander.png" width="96" height="96" />
-            </div>
-            <div class="pokemon-select-option squirtle" id="select-squirtle"> <span>Squirtle</span>
-                <img alt="007Squirtle.png" src="http://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/144px-007Squirtle.png" width="96" height="96" />
-            </div>
-            <div class="pokemon-select-option bulbasaur" id="select-bulbasaur"> <span>Bulbasaur</span>
-                <img alt="001Bulbasaur.png" src="http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/96px-001Bulbasaur.png" width="96" height="96" />
-            </div>
-            <div id="chooseStarterPokemonError">Sorry, you have already chosen your starting Pokemon.</div>
+      </div>
+      <div id="battle-pokemon">
+        <div class="hp">
+          <span class="current-hp"></span>
         </div>
-        <div id="prof-oak-intro">
-          <img src="http://cdn.bulbagarden.net/upload/8/84/Professor_Oak_XY.png" alt="Professor Oak" width="188" height="342" />
-          <div class="prof-oak-text">
-            Hi there. Welcome to the world of Pokemon!
-          </div>
-          <a href="#" class="next-text pokemon-btn">Next</a>
+      </div>
+      <div id="battle-text"></div>
+      <div id="battle-attacks"></div>
+
     </div>
 
     <!-- Remove on JSFiddle -->
     <script src="jm-pokemon-game.js"></script>
-</body>
+  </body>

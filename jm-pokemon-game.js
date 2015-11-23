@@ -23,7 +23,9 @@
 
 
     // Put this into a JSON file and use AJAX
-    var charmander = {
+    var pokemon = {};
+
+    pokemon.charmander = {
         name: 'charmander',
         moves: {
             'Scratch': {
@@ -35,10 +37,11 @@
                 accuracy: 50
             }
         },
-        hp: 188
+        hp: 188,
+        image: 'http://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/96px-004Charmander.png'
     };
 
-    var squirtle = {
+    pokemon.squirtle = {
         name: 'squirtle',
         moves: {
             'Tackle': {
@@ -50,10 +53,11 @@
                 accuracy: 85
             }
         },
-        hp: 198
+        hp: 198,
+        image: 'http://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/144px-007Squirtle.png'
     };
 
-    var bulbasaur = {
+    pokemon.bulbasaur = {
         name: 'bulbasaur',
         moves: {
             'Tackle': {
@@ -65,7 +69,8 @@
                 accuracy: 100
             }
         },
-        hp: 200
+        hp: 200,
+        image: 'http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/96px-001Bulbasaur.png'
     };
 
 
@@ -226,18 +231,22 @@
       console.log('Starter pokemon is ' + confirmedPokemon);
       pokemonSelectContainer.removeChild(document.getElementsByClassName('pokemon-confirm-container')[0]);
 
-      switch (chosenPokemon) {
-          case "Charmander":
-          default:
-              addPokemon(charmander);
-              break;
-          case "Squirtle":
-              addPokemon(squirtle);
-              break;
-          case "Bulbasaur":
-              addPokemon(bulbasaur);
-              break;
-      };
+      // switch (chosenPokemon) {
+      //     case "Charmander":
+      //     default:
+      //         addPokemon(charmander);
+      //         break;
+      //     case "Squirtle":
+      //         addPokemon(squirtle);
+      //         break;
+      //     case "Bulbasaur":
+      //         addPokemon(bulbasaur);
+      //         break;
+      // };
+
+      // Used a variable to add the starter pokemon to the carriedPokemon, instead of the switch statement
+      addPokemon(pokemon[chosenPokemon.toLowerCase()]);
+
       console.log(player.carriedPokemon);
       console.log(player);
       profOakIntro.className = "is-visible";
@@ -272,6 +281,8 @@
             break;
           case 3:
             profOakIntro.removeAttribute('class');
+            // Temperary location of battle
+            battle();
             break;
           default:
             profOakText.textContent = "Now get on with your journey!";
@@ -280,6 +291,39 @@
         return c+=1;
       }, false);
     };
+
+    var battle = function() {
+
+      var battleContainer = document.getElementById('battle'),
+          battleEnemy = document.getElementById('enemy-pokemon'),
+          battleEnemyHp = battleEnemy.getElementsByClassName('hp')[0],
+          battlePokemon = document.getElementById('battle-pokemon'),
+          battlePokemonHp = battlePokemon.getElementsByClassName('hp')[0],
+          battleText = document.getElementById('battle-text');
+
+      var playerPokemon = player.carriedPokemon[0];
+      var currentHp = battlePokemon.getElementsByClassName('span')[0];
+      var enemyCurrentHp = battleEnemy.getElementsByClassName('span')[0];
+
+      var battlePokemonImg = document.createElement('img');
+      // Use attribute name as method, rather than setAttribute
+      // http://stackoverflow.com/questions/3919291/when-to-use-setattribute-vs-attribute-in-javascript
+      battlePokemonImg.className = 'battle-pokemon-image';
+      battlePokemonImg.src = playerPokemon.image;
+      battlePokemonImg.alt =  playerPokemon.name;
+      battlePokemon.appendChild(battlePokemonImg);
+
+      battlePokemonHp.textContent = playerPokemon.hp;
+      battlePokemonHp.appendChild(currentHp);
+      battleEnemyHp.appendChild(currentHp);
+
+
+      console.log(playerPokemon);
+
+
+
+
+    }
 
 
     //-----------------------------------
