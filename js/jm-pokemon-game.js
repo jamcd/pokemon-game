@@ -6,6 +6,7 @@
     // DECLARING VARIABLES
     //-----------------------------------
 
+    var gameContainer = document.getElementById('pokemon-game-container');
     var userNameInput = document.getElementById("user-name");
     var userName = '';
     var nameConfirmBtn = document.getElementById("submit-name");
@@ -32,7 +33,7 @@
                 power: 40,
                 accuracy: 100
             },
-                'Inferno': {
+            'Inferno': {
                 power: 100,
                 accuracy: 50
             }
@@ -48,7 +49,7 @@
                 power: 50,
                 accuracy: 100
             },
-                'Mega Punch': {
+            'Mega Punch': {
                 power: 80,
                 accuracy: 85
             }
@@ -64,7 +65,7 @@
                 power: 50,
                 accuracy: 100
             },
-                'Seed Bomb': {
+            'Seed Bomb': {
                 power: 80,
                 accuracy: 100
             }
@@ -73,6 +74,27 @@
         image: 'http://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/96px-001Bulbasaur.png'
     };
 
+
+
+    //-----------------------------------
+    // WILD POKEMON
+    //-----------------------------------
+
+    pokemon.pidgey = {
+        name: 'pidgey',
+        moves: {
+            'Tackle': {
+                power: 50,
+                accuracy: 100
+            },
+            'Sand Attack': {
+                power: 0,
+                accuracy: 100
+            }
+        },
+        hp: 200,
+        image: 'http://cdn.bulbagarden.net/upload/thumb/5/55/016Pidgey.png/100px-016Pidgey.png'
+    };
 
 
     //-----------------------------------
@@ -292,19 +314,86 @@
       }, false);
     };
 
-    var battle = function() {
 
+
+
+
+
+
+
+
+
+
+
+
+
+    // --------------------------
+    // SKIPPING COMPLETED SECTIONS
+    // --------------------------
+    //
+    //
+    profOakIntro.style.display = 'none';
+    userNameInput.style.display = 'none';
+    setNameContainer.className = 'is-hidden';
+    pokemonSelectContainer.style.display = 'none';
+    player = new CurrentPlayer('TEST');
+    addPokemon(pokemon.charmander);
+
+    // --------------------------
+    // SKIPPING COMPLETED SECTIONS
+    // --------------------------
+    //
+    //
+
+
+
+
+
+    var walk = function() {
+      // if(is grass) {
+        var pickedOdds = Math.floor(Math.random() * 10);
+        console.log(pickedOdds);
+        // return odds;
+
+        if (pickedOdds === 0) {
+          wildEnemy();
+        }
+      // }
+    };
+
+    var wildEnemy = function() {
+      // Create a random enemy with odds based on area
+        var pickedOdds = Math.floor(Math.random() * 10);
+        console.log(pickedOdds);
+
+        battle(pokemon.pidgey);
+    };
+
+    var battle = function(enemy) {
+
+      // Clean Up
+      // Rename variables - very messy
+
+      // HTML Elements
       var battleContainer = document.getElementById('battle'),
-          battleEnemy = document.getElementById('enemy-pokemon'),
-          battleEnemyHp = battleEnemy.getElementsByClassName('hp')[0],
+          battleText = document.getElementById('battle-text'),
+          playerPokemon = player.carriedPokemon[0],
+
+          // Your Pokemon HTML
           battlePokemon = document.getElementById('battle-pokemon'),
           battlePokemonHp = battlePokemon.getElementsByClassName('hp')[0],
-          battleText = document.getElementById('battle-text');
+          currentHp = battlePokemon.getElementsByClassName('current-hp')[0],
+          maxHP = battlePokemon.getElementsByClassName('max-hp')[0],
 
-      var playerPokemon = player.carriedPokemon[0];
-      var currentHp = battlePokemon.getElementsByClassName('span')[0];
-      var enemyCurrentHp = battleEnemy.getElementsByClassName('span')[0];
+          // Enemy Pokemon HTML
+          battleEnemy = document.getElementById('enemy-pokemon'),
+          battleEnemyHp = battleEnemy.getElementsByClassName('hp')[0],
+          enemyCurrentHp = battleEnemy.getElementsByClassName('current-hp')[0],
+          enemyMaxHp = battleEnemy.getElementsByClassName('max-hp')[0];
 
+
+
+      // Creating Image for pokemon and adding to front end
       var battlePokemonImg = document.createElement('img');
       // Use attribute name as method, rather than setAttribute
       // http://stackoverflow.com/questions/3919291/when-to-use-setattribute-vs-attribute-in-javascript
@@ -313,17 +402,45 @@
       battlePokemonImg.alt =  playerPokemon.name;
       battlePokemon.appendChild(battlePokemonImg);
 
-      battlePokemonHp.textContent = playerPokemon.hp;
-      battlePokemonHp.appendChild(currentHp);
-      battleEnemyHp.appendChild(currentHp);
+      var enemyPokemonImg = document.createElement('img');
+      enemyPokemonImg.className = 'enemy-pokemon-image';
+      enemyPokemonImg.src = enemy.image;
+      enemyPokemonImg.alt =  enemy.name;
+      battleEnemy.appendChild(enemyPokemonImg);
 
+      // Adding current Pokemon's HP
+      currentHp.textContent = playerPokemon.hp;
+      maxHP.textContent = playerPokemon.hp;
+
+      // Adding enemy Pokemon's HP
+      enemyCurrentHp.textContent = enemy.hp;
+      enemyMaxHp.textContent = enemy.hp;
 
       console.log(playerPokemon);
 
+    };
 
 
 
-    }
+
+
+
+
+
+
+    document.addEventListener('keydown', walk, false);
+    // --------------------------
+    // RUNNING THE WALK ON ANY KEYPRESS
+    // --------------------------
+    //
+    //
+
+
+
+
+
+
+
 
 
     //-----------------------------------
@@ -412,6 +529,8 @@
 // Use a constructor, with the new keyword to create an instance?
 // e.g. Each pokemon used in the game has it's own object prototype,
 // then inherit those properties to create 'pokemon1' with name as a property on that
+
+// JSLint
 
 //-----------------------------------
 
