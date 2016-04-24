@@ -14,46 +14,48 @@
   // Create current player
   var currentPlayer = new Player('Jamie');
 
-  var newPokemon = new Charmander(2, [move['Bubble']]);
-
 
   // Level testing
-  currentPlayer.addPokemonToParty( new Charmander(1, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(10, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(20, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(30, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(40, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(50, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(60, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(70, [move.bubble]) );
-  currentPlayer.addPokemonToParty( new Charmander(80, [move.bubble]) );
+  currentPlayer.addPokemonToParty( new Charmander(0, ['bubble', 'tailWhip']) );
+  currentPlayer.addPokemonToParty( new Charmander(10, ['bubble']) );
+  currentPlayer.addPokemonToParty( new Charmander(20, ['bubble']) );
+  currentPlayer.addPokemonToParty( new Charmander(30, ['bubble']) );
+  currentPlayer.addPokemonToParty( new Charmander(40, ['bubble']) );
+  currentPlayer.addPokemonToParty( new Charmander(50, ['bubble']) );
+  currentPlayer.addPokemonToParty( new Charmander(60, ['bubble']) );
+  currentPlayer.addPokemonToParty( new Charmander(70, ['bubble']) );
+  currentPlayer.addPokemonToParty( new Charmander(80, ['bubble']) );
 
-  for (var i = 0; i < currentPlayer.carriedPokemon.length; i+=1) {
-    console.log(currentPlayer.carriedPokemon[i].baseHp +
-      ' - lvl ' + currentPlayer.carriedPokemon[i].level +
-      ' - hp ' + currentPlayer.carriedPokemon[i].maxHp());
-  }
+  var testPokemon = currentPlayer.carriedPokemon[0];
 
-  var testtt = currentPlayer.carriedPokemon[0];
-  // console.log(testtt.hp);
+  // testPokemon.levelUpCheck();
+  // console.log(testPokemon.level);
+  console.log(testPokemon.moveSet);
 
-  // console.log(currentPlayer.carriedPokemon[1].baseHp + ' - lvl ' + currentPlayer.carriedPokemon[1].level + ' - hp ' + currentPlayer.carriedPokemon[1].hp());
-  // console.log(currentPlayer.carriedPokemon[2].baseHp + ' - lvl ' + currentPlayer.carriedPokemon[2].level + ' - hp ' + currentPlayer.carriedPokemon[2].hp());
-  // console.log(currentPlayer.carriedPokemon[3].baseHp + ' - lvl ' + currentPlayer.carriedPokemon[3].level + ' - hp ' + currentPlayer.carriedPokemon[3].hp());
-  // console.log(currentPlayer.carriedPokemon[4].baseHp + ' - lvl ' + currentPlayer.carriedPokemon[3].level + ' - hp ' + currentPlayer.carriedPokemon[3].hp());
-  // console.log(currentPlayer.carriedPokemon[5].baseHp + ' - lvl ' + currentPlayer.carriedPokemon[3].level + ' - hp ' + currentPlayer.carriedPokemon[3].hp());
-  // console.log(currentPlayer.carriedPokemon[6].baseHp + ' - lvl ' + currentPlayer.carriedPokemon[3].level + ' - hp ' + currentPlayer.carriedPokemon[3].hp());
+  // AFTER BATTLE FUNCTIONS
+  //
+  testPokemon.addXp(1000);
+  testPokemon.levelUpCheck();
+  testPokemon.calculateMaxHp();
+  console.log(testPokemon.moveSet);
 
+
+
+
+  // Wild pokemon have the same xp as the base of their level (aka their level cubed)
+
+
+  // PRINT INFORMATION ON CURRENT PLAYER'S POKEMON
+  //
+  // for (var i = 0; i < currentPlayer.carriedPokemon.length; i+=1) {
+  //   currentPlayer.carriedPokemon[i].calculateMaxHp();
+  //   console.log(currentPlayer.carriedPokemon[i].baseHp +
+  //     ' - lvl ' + currentPlayer.carriedPokemon[i].level +
+  //     ' - hp ' + currentPlayer.carriedPokemon[i].maxHp);
+  // }
 
   // currentPlayer.addPokemonToParty(new Charmander(25, [move['Ember']]));
   // currentPlayer.addPokemonToParty(new Squirtle(54, [move['Bubble']]));
   // currentPlayer.addPokemonToParty(new Bulbasaur(33, [move['Tail Whip']]));
-
-  console.log(currentPlayer);
-
-
-  // console.log(currentPlayer);
-
-
 
 // }());
