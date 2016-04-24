@@ -16,29 +16,39 @@
 
 
   // Level testing
-  currentPlayer.addPokemonToParty( new Charmander(0, ['bubble', 'tailWhip']) );
-  currentPlayer.addPokemonToParty( new Charmander(10, ['bubble']) );
-  currentPlayer.addPokemonToParty( new Charmander(20, ['bubble']) );
-  currentPlayer.addPokemonToParty( new Charmander(30, ['bubble']) );
-  currentPlayer.addPokemonToParty( new Charmander(40, ['bubble']) );
-  currentPlayer.addPokemonToParty( new Charmander(50, ['bubble']) );
-  currentPlayer.addPokemonToParty( new Charmander(60, ['bubble']) );
-  currentPlayer.addPokemonToParty( new Charmander(70, ['bubble']) );
-  currentPlayer.addPokemonToParty( new Charmander(80, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(0, ['bubble', 'tailWhip']) );
+  // currentPlayer.addPokemonToParty( new Charmander(10, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(20, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(30, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(40, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(50, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(60, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(70, ['bubble']) );
+  // currentPlayer.addPokemonToParty( new Charmander(80, ['bubble']) );
+
+
+  currentPlayer.addPokemonToParty( new Charmander(20, ['bubble', 'tailWhip']) );
 
   var testPokemon = currentPlayer.carriedPokemon[0];
 
   // testPokemon.levelUpCheck();
   // console.log(testPokemon.level);
-  console.log(testPokemon.moveSet);
+  // console.log(testPokemon.moveSet);
 
   // AFTER BATTLE FUNCTIONS
   //
   testPokemon.addXp(1000);
   testPokemon.levelUpCheck();
   testPokemon.calculateMaxHp();
-  console.log(testPokemon.moveSet);
+  // console.log(testPokemon.moveSet);
 
+
+  currentPlayer.addItemToBag(new PokeBall());
+  currentPlayer.addItemToBag(new GreatBall());
+  currentPlayer.addItemToBag(new MasterBall());
+  // console.log(currentPlayer.bag);
+
+  battle(currentPlayer, currentPlayer);
 
 
 

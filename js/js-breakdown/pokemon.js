@@ -8,9 +8,8 @@
 
 
 var naturalMoves = {},
-chosenMoves = {},
-nextLevel, nextLevelXp;
-
+    chosenMoves = {},
+    nextLevel, nextLevelXp;
 
 // Feed AJAX into this?
 var Pokemon = function(name, id, baseHp, type, img, naturalMoves) {
@@ -28,29 +27,11 @@ var Pokemon = function(name, id, baseHp, type, img, naturalMoves) {
     this.xp = 0;
     // evolve - DONE
     // learn moves at levels
-
 };
 
 Pokemon.prototype.addXp = function(newXp) {
     this.xp += newXp;
 }
-
-
-Pokemon.prototype.levelUpCheck = function() {
-
-    nextLevel = this.level + 1;
-    nextLevelXp = Math.pow(nextLevel, 3); // Level calculation based on Medium-Fast exp group
-
-    while (this.xp >= nextLevelXp) {
-        this.level += 1; // Level up
-        console.log(this.name + ' grew to level ' + this.level);
-        this.learnNaturalMoveCheck();
-        // Prepare for next check
-        nextLevel += 1;
-        nextLevelXp = Math.pow(nextLevel, 3);
-    }
-}
-
 
 Pokemon.prototype.learnMove = function (theMove) {
     if (Object.keys(this.moveSet).length < 4) {
@@ -82,7 +63,6 @@ Pokemon.prototype.learnMove = function (theMove) {
     }
 };
 
-
 Pokemon.prototype.learnNaturalMoveCheck = function () {
     // add modal for confirmation of wanting to learn move
     for(moveName in this.naturalMoves) {
@@ -94,7 +74,20 @@ Pokemon.prototype.learnNaturalMoveCheck = function () {
     }
 };
 
+Pokemon.prototype.levelUpCheck = function() {
 
+    nextLevel = this.level + 1;
+    nextLevelXp = Math.pow(nextLevel, 3); // Level calculation based on Medium-Fast exp group
+
+    while (this.xp >= nextLevelXp) {
+        this.level += 1; // Level up
+        console.log(this.name + ' grew to level ' + this.level);
+        this.learnNaturalMoveCheck();
+        // Prepare for next check
+        nextLevel += 1;
+        nextLevelXp = Math.pow(nextLevel, 3);
+    }
+}
 
 Pokemon.prototype.calculateMaxHp = function() {
     if (this.level > 1) {
@@ -103,26 +96,6 @@ Pokemon.prototype.calculateMaxHp = function() {
         this.maxHp = this.baseHp;
     }
 };
-
-// Pass in array of move names, with optional second parameter for each as the level it's learnt at.
-var moveMap = function(moves) {
-    chosenMoves = {}; // quick fix. improve so that the chosenMoves value isnt remembered when the function is finished
-    if(moves.constructor === Array) { // check if its an array
-        for (var i = 0; i < moves.length; i+=1) {
-            if(moves[i].constructor === Array) { // if the level is defined
-                chosenMoves[move[moves[i][0]].name] = move[moves[i][0]];
-                chosenMoves[move[moves[i][0]].name].level = moves[i][1];
-            } else {
-                chosenMoves[move[moves[i]].name] = move[moves[i]];
-            }
-
-        }
-        return chosenMoves;
-    }
-}
-
-
-
 
 
 
@@ -145,7 +118,7 @@ var Squirtle = function(level, moveSet) {
     ]);
     Pokemon.call(this, 'Squirtle', 007, 44, 'Water', '/3/39/007Squirtle.png/250px-007Squirtle.png', naturalMoves);
     this.level = level;
-    this.moveSet = moveSet;
+    this.moveSet = moveMap(moves);
 }
 
 var Bulbasaur = function(level, moveSet) {
@@ -156,7 +129,7 @@ var Bulbasaur = function(level, moveSet) {
     ]);
     Pokemon.call(this, 'Bulbasaur', 001, 45, ['Grass', 'Poison'], '/2/21/001Bulbasaur.png/250px-001Bulbasaur.png', naturalMoves);
     this.level = level;
-    this.moveSet = moveSet;
+    this.moveSet = moveMap(moves);
 }
 
 var Pidgey = function(level, moveSet) {
@@ -166,7 +139,7 @@ var Pidgey = function(level, moveSet) {
     ]);
     Pokemon.call(this, 'Pidgey', 016, 40, ['Normal', 'Flying'], '/5/55/016Pidgey.png/250px-016Pidgey.png', naturalMoves);
     this.level = level;
-    this.moveSet = moveSet;
+    this.moveSet = moveMap(moves);
 }
 
 // hp function didn't work until I included these. Work out why.
@@ -174,10 +147,6 @@ Charmander.prototype = Object.create(Pokemon.prototype);
 Squirtle.prototype = Object.create(Pokemon.prototype);
 Bulbasaur.prototype = Object.create(Pokemon.prototype);
 Pidgey.prototype = Object.create(Pokemon.prototype);
-
-
-
-
 
 
 
