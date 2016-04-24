@@ -8,8 +8,8 @@
 
 // Register current player
 // No need to use prototypes to add methods, because only one should be created
-var Player = function (playerName) {
-    this.playerName = playerName;
+var Player = function (name) {
+    this.name = name;
     // this.gender = gender;
     this.starterPokemon = '';
     this.carriedPokemon = [];

@@ -77,7 +77,7 @@ Pokemon.prototype.learnNaturalMoveCheck = function () {
 Pokemon.prototype.levelUpCheck = function() {
 
     nextLevel = this.level + 1;
-    nextLevelXp = Math.pow(nextLevel, 3); // Level calculation based on Medium-Fast exp group
+    nextLevelXp = Math.pow(nextLevel, 3); // Level calculation based on Medium-Fast exp group (xp needed = level, cubed)
 
     while (this.xp >= nextLevelXp) {
         this.level += 1; // Level up
@@ -109,8 +109,7 @@ var Charmander = function(level, moves) {
     this.level = level;
     this.moveSet = moveMap(moves);
 }
-
-var Squirtle = function(level, moveSet) {
+var Squirtle = function(level, moves) {
     naturalMoves = moveMap([
         ['tackle', 1],
         ['tailWhip', 4],
@@ -120,8 +119,7 @@ var Squirtle = function(level, moveSet) {
     this.level = level;
     this.moveSet = moveMap(moves);
 }
-
-var Bulbasaur = function(level, moveSet) {
+var Bulbasaur = function(level, moves) {
     naturalMoves = moveMap([
         ['tackle', 1],
         ['growl', 4],
@@ -131,8 +129,7 @@ var Bulbasaur = function(level, moveSet) {
     this.level = level;
     this.moveSet = moveMap(moves);
 }
-
-var Pidgey = function(level, moveSet) {
+var Pidgey = function(level, moves) {
     naturalMoves = moveMap([
         ['tackle', 1],
         ['sandAttack', 5]

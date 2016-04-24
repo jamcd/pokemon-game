@@ -9,10 +9,37 @@
   // game.player = {};
 
 
-
-
-  // Create current player
+  // Create current players
   var currentPlayer = new Player('Jamie');
+  var enemyPlayer = new Player('Gary Oak');
+
+  currentPlayer.addPokemonToParty( new Charmander(20, ['ember', 'tailWhip']) );
+
+  enemyPlayer.addPokemonToParty( new Squirtle(20, ['scratch', 'bubble']) );
+
+
+  // AFTER BATTLE FUNCTIONS (and run once before at the start of game?)
+  //
+  var testPokemon = currentPlayer.carriedPokemon[0];
+  testPokemon.addXp(1000);
+  testPokemon.levelUpCheck();
+  testPokemon.calculateMaxHp();
+  // console.log(testPokemon.moveSet);
+
+  // ADDING TO BAG
+  //
+  currentPlayer.addItemToBag(new PokeBall());
+  currentPlayer.addItemToBag(new GreatBall());
+  currentPlayer.addItemToBag(new MasterBall());
+  // console.log(currentPlayer.bag);
+
+  // BATTLE
+  //
+  battle(currentPlayer, enemyPlayer);
+
+
+
+  // Wild pokemon have the same xp as the base of their level (aka their level cubed)
 
 
   // Level testing
@@ -25,35 +52,6 @@
   // currentPlayer.addPokemonToParty( new Charmander(60, ['bubble']) );
   // currentPlayer.addPokemonToParty( new Charmander(70, ['bubble']) );
   // currentPlayer.addPokemonToParty( new Charmander(80, ['bubble']) );
-
-
-  currentPlayer.addPokemonToParty( new Charmander(20, ['bubble', 'tailWhip']) );
-
-  var testPokemon = currentPlayer.carriedPokemon[0];
-
-  // testPokemon.levelUpCheck();
-  // console.log(testPokemon.level);
-  // console.log(testPokemon.moveSet);
-
-  // AFTER BATTLE FUNCTIONS
-  //
-  testPokemon.addXp(1000);
-  testPokemon.levelUpCheck();
-  testPokemon.calculateMaxHp();
-  // console.log(testPokemon.moveSet);
-
-
-  currentPlayer.addItemToBag(new PokeBall());
-  currentPlayer.addItemToBag(new GreatBall());
-  currentPlayer.addItemToBag(new MasterBall());
-  // console.log(currentPlayer.bag);
-
-  battle(currentPlayer, currentPlayer);
-
-
-
-  // Wild pokemon have the same xp as the base of their level (aka their level cubed)
-
 
   // PRINT INFORMATION ON CURRENT PLAYER'S POKEMON
   //
