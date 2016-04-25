@@ -33,6 +33,9 @@
   currentPlayer.addItemToBag(new MasterBall());
   // console.log(currentPlayer.bag);
 
+  // battle PP test
+  currentPlayer.carriedPokemon[0].moveSet['Ember'].pp = 0;
+
   // BATTLE
   //
   battle(currentPlayer, enemyPlayer);
