@@ -12,19 +12,21 @@ var naturalMoves = {},
     nextLevel, nextLevelXp;
 
 // Feed AJAX into this?
-var Pokemon = function(name, id, baseHp, type, img, naturalMoves) {
+var Pokemon = function(name, id, baseHp, type, img, naturalMoves, speed) {
     this.name = name;
     this.id = id;
-    this.baseHp = baseHp;
     // type needs to be able to deal with arrays for hybrids
     this.type = type;
     this.img = img;
     this.naturalMoves = naturalMoves;
     this.moveSet = {};
-    this.level = 0;
-    this.hp = 0;
+    this.baseHp = baseHp;
+    this.hp = baseHp;
     this.maxHp = 0;
+    this.level = 0;
     this.xp = 0;
+
+    this.speed = speed;
     // evolve - DONE
     // learn moves at levels
 };
@@ -105,7 +107,7 @@ var Charmander = function(level, moves) {
         ['growl', 1],
         ['ember', 7]
     ]);
-    Pokemon.call(this, 'Charmander', 004, 39, 'Fire', '/7/73/004Charmander.png/250px-004Charmander.png', naturalMoves);
+    Pokemon.call(this, 'Charmander', 004, 39, 'Fire', '/7/73/004Charmander.png/250px-004Charmander.png', naturalMoves, 65);
     this.level = level;
     this.moveSet = moveMap(moves);
 }
@@ -115,7 +117,7 @@ var Squirtle = function(level, moves) {
         ['tailWhip', 4],
         ['bubble', 7]
     ]);
-    Pokemon.call(this, 'Squirtle', 007, 44, 'Water', '/3/39/007Squirtle.png/250px-007Squirtle.png', naturalMoves);
+    Pokemon.call(this, 'Squirtle', 007, 44, 'Water', '/3/39/007Squirtle.png/250px-007Squirtle.png', naturalMoves, 43);
     this.level = level;
     this.moveSet = moveMap(moves);
 }
@@ -125,7 +127,7 @@ var Bulbasaur = function(level, moves) {
         ['growl', 4],
         ['leechSeed', 7]
     ]);
-    Pokemon.call(this, 'Bulbasaur', 001, 45, ['Grass', 'Poison'], '/2/21/001Bulbasaur.png/250px-001Bulbasaur.png', naturalMoves);
+    Pokemon.call(this, 'Bulbasaur', 001, 45, ['Grass', 'Poison'], '/2/21/001Bulbasaur.png/250px-001Bulbasaur.png', naturalMoves, 45);
     this.level = level;
     this.moveSet = moveMap(moves);
 }
@@ -134,7 +136,7 @@ var Pidgey = function(level, moves) {
         ['tackle', 1],
         ['sandAttack', 5]
     ]);
-    Pokemon.call(this, 'Pidgey', 016, 40, ['Normal', 'Flying'], '/5/55/016Pidgey.png/250px-016Pidgey.png', naturalMoves);
+    Pokemon.call(this, 'Pidgey', 016, 40, ['Normal', 'Flying'], '/5/55/016Pidgey.png/250px-016Pidgey.png', naturalMoves, 56);
     this.level = level;
     this.moveSet = moveMap(moves);
 }

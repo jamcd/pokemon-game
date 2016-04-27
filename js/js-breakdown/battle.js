@@ -64,6 +64,8 @@ var actionSelect = function() {
     } while (reloop === true);
 }
 
+
+
 var playerChosenMove, enemyMoves, enemyChosenMove;
 
 var attackChosen = function(chosenMove) {
@@ -84,12 +86,44 @@ var attackChosen = function(chosenMove) {
     enemyChosenMove = chooseRandomMove(enemyMoves);
     enemyChosenMove = currentEnemyPokemon.moveSet[enemyChosenMove];
 
-    console.log(enemyChosenMove);
-    console.log(enemyMoves);
-    console.log(enemyMoves[Math.floor(Math.random()*enemyMoves.length)]);
-    console.log(enemyChosenMove);
+    var attack = function(attackPkn, defendPkn, attackMove) {
 
-    // if (playerChosenMove.speed >= currentEnemyPokemon.moveset)
+      // IMPORTANT TODO - Using currentPlayerPokemon is not ideal. This will change when the pokemon faints or switches??
+
+      // TODO NOT WORKING
+      // console.log(attackPkn['name'] + ' used ' + attackMove['name']);
+      // console.log(defendPkn['name'] + ' HP before = ' + defendPkn.hp);
+      // defendPkn.hp -= attackMove.power;
+      // console.log(defendPkn['name'] + ' HP after = ' + defendPkn.hp);
+
+    }
+
+
+
+    if (currentPlayerPokemon.speed > currentEnemyPokemon.speed) {
+      console.log(currentPlayerPokemon.speed);
+      console.log(currentEnemyPokemon.speed);
+      // Run attack
+      attack(currentPlayerPokemon, currentEnemyPokemon, playerChosenMove);
+      // Faint?
+      // IF enemy is still alive
+      if (currentEnemyPokemon.hp >= 1) {
+        attack(currentEnemyPokemon, currentPlayerPokemon, enemyChosenMove);
+      }
+    } else {
+      // Run attack
+      attack(currentEnemyPokemon, currentPlayerPokemon, enemyChosenMove);
+      // Faint?
+      // IF enemy is still alive
+      if (currentPlayerPokemon.hp >= 1) {
+        attack(currentPlayerPokemon, currentEnemyPokemon, playerChosenMove);
+      }
+    }
+
+    // console.log(enemyChosenMove);
+    // console.log(enemyMoves);
+    // console.log(enemyMoves[Math.floor(Math.random()*enemyMoves.length)]);
+    // console.log(enemyChosenMove);
 
     // for yours and enemy's turn:
     // take away PP
@@ -99,6 +133,9 @@ var attackChosen = function(chosenMove) {
 
     // run next turn choice
     // actionSelect();
+
+    // TODO deal with attacks that change attack order (e.g. always attack first/last)
+    // TODO deal with in-game stat changes
 }
 
 var battle = function(player, enemy) {
