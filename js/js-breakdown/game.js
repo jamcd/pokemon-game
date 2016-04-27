@@ -13,9 +13,11 @@
   var currentPlayer = new Player('Jamie');
   var enemyPlayer = new Player('Gary Oak');
 
-  currentPlayer.addPokemonToParty( new Charmander(20, ['ember', 'tailWhip']) );
+  currentPlayer.addPokemonToParty( new Charmander(20, ['ember', 'scratch', 'tailWhip']) );
+  currentPlayer.addPokemonToParty( new Bulbasaur(20, ['tackle', 'leechSeed']) );
 
-  enemyPlayer.addPokemonToParty( new Squirtle(20, ['scratch', 'bubble']) );
+  enemyPlayer.addPokemonToParty( new Squirtle(20, ['tackle', 'bubble', 'tailWhip']) );
+  enemyPlayer.addPokemonToParty( new Pidgey(20, ['tackle', 'sandAttack']) );
 
 
   // AFTER BATTLE FUNCTIONS (and run once before at the start of game?)
@@ -41,6 +43,8 @@
   battle(currentPlayer, enemyPlayer);
 
 
+
+// Use Phaser for quicker game development? http://phaser.io/tutorials/getting-started/index
 
   // Wild pokemon have the same xp as the base of their level (aka their level cubed)
 
