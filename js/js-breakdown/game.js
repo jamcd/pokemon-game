@@ -13,11 +13,11 @@
   var currentPlayer = new Player('Jamie');
   var enemyPlayer = new Player('Gary Oak');
 
-  currentPlayer.addPokemonToParty( new Charmander(20, ['ember', 'scratch', 'tailWhip']) );
-  currentPlayer.addPokemonToParty( new Bulbasaur(20, ['tackle', 'leechSeed']) );
+  currentPlayer.addPokemonToParty( new Charmander(20, ['ember', 'scratch', 'tailWhip'], currentPlayer) );
+  currentPlayer.addPokemonToParty( new Bulbasaur(20, ['tackle', 'leechSeed'], currentPlayer) );
 
-  enemyPlayer.addPokemonToParty( new Squirtle(20, ['tackle', 'bubble', 'tailWhip']) );
-  enemyPlayer.addPokemonToParty( new Pidgey(20, ['tackle', 'sandAttack']) );
+  enemyPlayer.addPokemonToParty( new Squirtle(20, ['tackle', 'bubble', 'tailWhip'], enemyPlayer) );
+  enemyPlayer.addPokemonToParty( new Pidgey(20, ['tackle', 'sandAttack'], enemyPlayer) );
 
 
   // AFTER BATTLE FUNCTIONS (and run once before at the start of game?)

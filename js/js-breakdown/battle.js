@@ -141,9 +141,16 @@ var attack = function(attackPkn, defendPkn, attackMove) {
     console.log('\u2694 \u2694 \u2694 ' + attackPkn['name'] + ' used ' + attackMove['name']);
     console.log('---------');
     console.log(defendPkn['name'] + ' HP before = ' + defendPkn.hp);
+
     if (defendPkn.hp - attackMove.power < 1) {
         defendPkn.hp = 0;
-        faint(defendPkn);
+
+        if (defendPkn.owner === currentPlayer) {
+            faint(defendPkn);
+        } else if (defendPkn.owner === enemyPlayer) {
+            enemyFaint(defendPkn);
+        }
+
     } else {
         defendPkn.hp -= attackMove.power;
         console.log(defendPkn['name'] + ' HP after = ' + defendPkn.hp);
@@ -179,6 +186,7 @@ var faint = function(faintedPkn) {
                 if (currentPlayer.carriedPokemon[i].name === pknChoice) {
                     currentPlayerPokemon = currentPlayer.carriedPokemon[i];
                     pokemonFound = true;
+                    break;
                 }
             }
 
@@ -231,23 +239,38 @@ var battle = function(player, enemy) {
     // http://graphemica.com/blocks/miscellaneous-symbols
     // http://graphemica.com/blocks/miscellaneous-symbols
 
-    // Unicode testing
+    // ----------- TESTING ------------------- //
     console.log('\u2694');
-
-    // Move testing
     /*
     Tail Whip
     */
+    // console.log(defendPkn);
 
-    currentPlayerPokemon = player.carriedPokemon[0];
-    currentEnemyPokemon = enemy.carriedPokemon[0];
+    // Making sure player has pokemon alive
+    // (may not be needed, because the player would have blacked out if they didn't)
 
-    // Battle dialog
-    console.log('\u2686 ' + enemy.name + ' sent out ' + currentEnemyPokemon.name);
-    console.log('\u2686 ' + player.name + ' sent out ' + currentPlayerPokemon.name);
+    currentPlayerPokemon = false;
 
-    do {
-        actionSelect();
-    } while (battleEnd === false);
+    for (i = 0; i < player.carriedPokemon.length; i+=1) {
+        if(player.carriedPokemon[i].hp >= 1) {
+            currentPlayerPokemon = player.carriedPokemon[i];
+            break;
+        }
+    }
+
+    if(currentPlayerPokemon !== false) {
+
+        currentEnemyPokemon = enemy.carriedPokemon[0];
+
+        // Battle dialog
+        console.log('\u2686 ' + enemy.name + ' sent out ' + currentEnemyPokemon.name);
+        console.log('\u2686 ' + player.name + ' sent out ' + currentPlayerPokemon.name);
+
+        // Battle loop
+        do {
+            actionSelect();
+        } while (battleEnd === false);
+
+    }
 
 } // END BATTLE

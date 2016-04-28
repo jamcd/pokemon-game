@@ -12,7 +12,7 @@ var naturalMoves = {},
     nextLevel, nextLevelXp;
 
 // Feed AJAX into this?
-var Pokemon = function(name, id, baseHp, type, img, naturalMoves, speed) {
+var Pokemon = function(name, id, baseHp, type, img, naturalMoves, speed, owner) {
     this.name = name;
     this.id = id;
     // type needs to be able to deal with arrays for hybrids
@@ -101,7 +101,7 @@ Pokemon.prototype.calculateMaxHp = function() {
 
 
 
-var Charmander = function(level, moves) {
+var Charmander = function(level, moves, owner) {
     naturalMoves = moveMap([
         ['scratch', 1],
         ['growl', 1],
@@ -110,8 +110,9 @@ var Charmander = function(level, moves) {
     Pokemon.call(this, 'Charmander', 004, 39, 'Fire', '/7/73/004Charmander.png/250px-004Charmander.png', naturalMoves, 65);
     this.level = level;
     this.moveSet = moveMap(moves);
+    this.owner = owner || null;
 }
-var Squirtle = function(level, moves) {
+var Squirtle = function(level, moves, owner) {
     naturalMoves = moveMap([
         ['tackle', 1],
         ['tailWhip', 4],
@@ -120,8 +121,9 @@ var Squirtle = function(level, moves) {
     Pokemon.call(this, 'Squirtle', 007, 44, 'Water', '/3/39/007Squirtle.png/250px-007Squirtle.png', naturalMoves, 43);
     this.level = level;
     this.moveSet = moveMap(moves);
+    this.owner = owner || null;
 }
-var Bulbasaur = function(level, moves) {
+var Bulbasaur = function(level, moves, owner) {
     naturalMoves = moveMap([
         ['tackle', 1],
         ['growl', 4],
@@ -130,8 +132,9 @@ var Bulbasaur = function(level, moves) {
     Pokemon.call(this, 'Bulbasaur', 001, 45, ['Grass', 'Poison'], '/2/21/001Bulbasaur.png/250px-001Bulbasaur.png', naturalMoves, 45);
     this.level = level;
     this.moveSet = moveMap(moves);
+    this.owner = owner || null;
 }
-var Pidgey = function(level, moves) {
+var Pidgey = function(level, moves, owner) {
     naturalMoves = moveMap([
         ['tackle', 1],
         ['sandAttack', 5]
@@ -139,6 +142,7 @@ var Pidgey = function(level, moves) {
     Pokemon.call(this, 'Pidgey', 016, 40, ['Normal', 'Flying'], '/5/55/016Pidgey.png/250px-016Pidgey.png', naturalMoves, 56);
     this.level = level;
     this.moveSet = moveMap(moves);
+    this.owner = owner || null;
 }
 
 // hp function didn't work until I included these. Work out why.
