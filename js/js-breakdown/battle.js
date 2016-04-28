@@ -1,5 +1,6 @@
 var currentPlayerPokemon, currentEnemyPokemon, reloop, selectMove,
-    playerChosenMove, enemyMoves, enemyChosenMove, count, i, blackedOut = false;
+playerChosenMove, enemyMoves, enemyChosenMove, count, i, battleEnd = false,
+pokemonFound = false;
 
 var chooseRandomMove = function(pokemonMoves) {
     return pokemonMoves[Math.floor(Math.random() * pokemonMoves.length)];
@@ -156,7 +157,7 @@ var faint = function(faintedPkn) {
         count += currentPlayer.carriedPokemon[i].hp;
     }
 
-    if (count >= 1) {
+    if (count < 1) {
         blackout();
     } else if (confirm(faintedPkn.name + ' fainted. Use next Pokemon?') === true) {
         var pknList = '', pknChoice, reloop;
@@ -170,11 +171,18 @@ var faint = function(faintedPkn) {
         // TODO make fainted pokemon unavailable.
         do {
             reloop = false;
+            pokemonFound = false;
             pknChoice = prompt('Select Pokemon: ' + pknList);
-            console.log(pknChoice);
-            console.log(currentPlayer.carriedPokemon[pknChoice.toLowerCase()]);
-            if (currentPlayer.carriedPokemon.hasOwnProperty(pknChoice.toLowerCase())) {
-                currentPlayerPokemon = currentPlayer.carriedPokemon[pknChoice];
+            console.log('You chose ' + pknChoice);
+
+            for (i = 0; i < currentPlayer.carriedPokemon.length; i+=1) {
+                if (currentPlayer.carriedPokemon[i].name === pknChoice) {
+                    currentPlayerPokemon = currentPlayer.carriedPokemon[i];
+                    pokemonFound = true;
+                }
+            }
+
+            if (pokemonFound === true) {
                 console.log('\u2686 ' + currentPlayer.name + ' sent out ' + currentPlayerPokemon.name);
                 actionSelect();
             } else {
@@ -186,14 +194,33 @@ var faint = function(faintedPkn) {
 }
 
 var enemyFaint = function(faintedPkn) {
-    console.log('enemy faint');
+    // TODO Adapt for wild pokemon, not trainer battles
+    console.log('\u26E8 ' + faintedPkn.name + ' fainted');
+    count = 0;
+    for (i = 0; i < enemyPlayer.carriedPokemon.length; i+=1) {
+        count += enemyPlayer.carriedPokemon[i].hp;
+    }
+
+    if (count >= 1) {
+        // next pokemon
+    } else {
+        wonBattle();
+    }
+
 }
 
 var blackout = function() {
     console.log('--------- --------- --------- ---------');
     console.log('\u26E8 \u26E8 \u26E8 ' + currentPlayer.name + ' blacked out');
     console.log('--------- --------- --------- ---------');
-    blackedOut = true;
+    battleEnd = true;
+}
+
+var wonBattle = function() {
+    console.log('--------- --------- --------- ---------');
+    console.log('★ ' + currentPlayer.name + ' defeated ' + enemyPlayer.name);
+    console.log('--------- --------- --------- ---------');
+    battleEnd = true;
 }
 
 var battle = function(player, enemy) {
@@ -221,6 +248,6 @@ var battle = function(player, enemy) {
 
     do {
         actionSelect();
-    } while (blackedOut === false   );
+    } while (battleEnd === false);
 
 } // END BATTLE
