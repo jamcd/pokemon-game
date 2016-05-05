@@ -204,13 +204,35 @@ var faint = function(faintedPkn) {
 var enemyFaint = function(faintedPkn) {
     // TODO Adapt for wild pokemon, not trainer battles
     console.log('\u26E8 ' + faintedPkn.name + ' fainted');
-    count = 0;
+    count = 0, pokemonFound = false;
     for (i = 0; i < enemyPlayer.carriedPokemon.length; i+=1) {
-        count += enemyPlayer.carriedPokemon[i].hp;
+        if (enemyPlayer.carriedPokemon[i].hp >= 1) {
+            currentEnemyPokemon = enemyPlayer.carriedPokemon[i];
+            pokemonFound = true;
+            break;
+        }
     }
 
-    if (count >= 1) {
+    // Gain XP
+    // TODO feed in real XP amount
+    // TODO make sure all pokemon that battled the fainted pokemon gain XP
+    // Enemy Experience Stat * Enemy Level Stat * Enemy Tame Stat / 7 = Exp - http://www.psypokes.com/lab/expguide.php
+    // http://bulbapedia.bulbagarden.net/wiki/Experience (formula near the middle of the page)
+
+    // NOTE You can either times the 7 by the number of pokemon that faught and haven't fainted
+    // Or you can divide the whole result between them (for loop?)
+
+    // TODO Add exp yield for each pokemon (experience stat)
+    // http://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_effort_value_yield
+
+    // var battleXp = currentEnemyPokemon.level *
+
+    currentPlayerPokemon.addXp();
+
+    if (pokemonFound === true) {
         // next pokemon
+        console.log('\u2686 ' + enemyPlayer.name + ' sent out ' + currentEnemyPokemon.name);
+        actionSelect();
     } else {
         wonBattle();
     }
@@ -228,6 +250,7 @@ var wonBattle = function() {
     console.log('--------- --------- --------- ---------');
     console.log('★ ' + currentPlayer.name + ' defeated ' + enemyPlayer.name);
     console.log('--------- --------- --------- ---------');
+    // TODO dipslay a message from trainer and about money won?
     battleEnd = true;
 }
 
@@ -251,6 +274,8 @@ var battle = function(player, enemy) {
 
     currentPlayerPokemon = false;
 
+    // NOTE This is duplicated in faint and enemy faint
+    // TODO Make it reusable
     for (i = 0; i < player.carriedPokemon.length; i+=1) {
         if(player.carriedPokemon[i].hp >= 1) {
             currentPlayerPokemon = player.carriedPokemon[i];
