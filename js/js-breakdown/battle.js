@@ -180,7 +180,6 @@ var faint = function(faintedPkn) {
             reloop = false;
             pokemonFound = false;
             pknChoice = prompt('Select Pokemon: ' + pknList);
-            console.log('You chose ' + pknChoice);
 
             for (i = 0; i < currentPlayer.carriedPokemon.length; i+=1) {
                 if (currentPlayer.carriedPokemon[i].name === pknChoice) {
@@ -290,6 +289,8 @@ var battle = function(player, enemy) {
         // Battle dialog
         console.log('\u2686 ' + enemy.name + ' sent out ' + currentEnemyPokemon.name);
         console.log('\u2686 ' + player.name + ' sent out ' + currentPlayerPokemon.name);
+
+        updatePokemonImage(currentPlayerPokemon);
 
         // Battle loop
         do {

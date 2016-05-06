@@ -12,12 +12,12 @@ var naturalMoves = {},
     nextLevel, nextLevelXp;
 
 // Feed AJAX into this?
-var Pokemon = function(name, id, baseHp, type, img, naturalMoves, speed, owner) {
+var Pokemon = function(name, id, baseHp, type, imgUrl, naturalMoves, speed, owner) {
     this.name = name;
     this.id = id;
     // type needs to be able to deal with arrays for hybrids
     this.type = type;
-    this.img = img;
+    this.imgUrl = 'http://cdn.bulbagarden.net/upload/thumb/' + imgUrl;
     this.naturalMoves = naturalMoves;
     this.moveSet = {};
     this.baseHp = baseHp;
