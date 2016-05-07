@@ -12,12 +12,12 @@ var naturalMoves = {},
     nextLevel, nextLevelXp;
 
 // Feed AJAX into this?
-var Pokemon = function(name, id, baseHp, type, imgUrl, naturalMoves, speed, owner) {
+var Pokemon = function(name, id, baseHp, type, naturalMoves, speed, owner) {
     this.name = name;
     this.id = id;
     // type needs to be able to deal with arrays for hybrids
     this.type = type;
-    this.imgUrl = 'http://cdn.bulbagarden.net/upload/thumb/' + imgUrl;
+    this.bgPosition = mapToSprite(id);
     this.naturalMoves = naturalMoves;
     this.moveSet = {};
     this.baseHp = baseHp;
@@ -107,7 +107,7 @@ var Charmander = function(level, moves, owner) {
         ['growl', 1],
         ['ember', 7]
     ]);
-    Pokemon.call(this, 'Charmander', 004, 39, 'Fire', '/7/73/004Charmander.png/250px-004Charmander.png', naturalMoves, 65);
+    Pokemon.call(this, 'Charmander', 004, 39, 'Fire', naturalMoves, 65);
     this.level = level;
     this.moveSet = moveMap(moves);
     this.owner = owner || null;
@@ -118,7 +118,7 @@ var Squirtle = function(level, moves, owner) {
         ['tailWhip', 4],
         ['bubble', 7]
     ]);
-    Pokemon.call(this, 'Squirtle', 007, 44, 'Water', '/3/39/007Squirtle.png/250px-007Squirtle.png', naturalMoves, 43);
+    Pokemon.call(this, 'Squirtle', 007, 44, 'Water', naturalMoves, 43);
     this.level = level;
     this.moveSet = moveMap(moves);
     this.owner = owner || null;
@@ -129,7 +129,7 @@ var Bulbasaur = function(level, moves, owner) {
         ['growl', 4],
         ['leechSeed', 7]
     ]);
-    Pokemon.call(this, 'Bulbasaur', 001, 45, ['Grass', 'Poison'], '/2/21/001Bulbasaur.png/250px-001Bulbasaur.png', naturalMoves, 45);
+    Pokemon.call(this, 'Bulbasaur', 001, 45, ['Grass', 'Poison'], naturalMoves, 45);
     this.level = level;
     this.moveSet = moveMap(moves);
     this.owner = owner || null;
@@ -139,7 +139,7 @@ var Pidgey = function(level, moves, owner) {
         ['tackle', 1],
         ['sandAttack', 5]
     ]);
-    Pokemon.call(this, 'Pidgey', 016, 40, ['Normal', 'Flying'], '/5/55/016Pidgey.png/250px-016Pidgey.png', naturalMoves, 56);
+    Pokemon.call(this, 'Pidgey', 016, 40, ['Normal', 'Flying'], naturalMoves, 56);
     this.level = level;
     this.moveSet = moveMap(moves);
     this.owner = owner || null;

@@ -40,7 +40,23 @@
 
   // BATTLE
   //
+  currentPlayerPokemon = currentPlayer.carriedPokemon[0];
+  playerPokemonImageContainer.style.backgroundPosition = currentPlayerPokemon.bgPosition;
+
   battle(currentPlayer, enemyPlayer);
+
+
+  // TODO pokemon sprites!!!
+  // http://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/
+  // http://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/
+  // http://www.spriters-resource.com/game_boy_advance/pokemonfireredleafgreen/
+
+  // http://chaoticcherrycake.deviantart.com/art/Pokemon-Tileset-From-Public-Tiles-358379026
+
+
+  // TODO Read about game loops and timers
+  // http://www.isaacsukin.com/news/2015/01/detailed-explanation-javascript-game-loops-and-timing
+  // https://developer.mozilla.org/en-US/docs/Games/Anatomy
 
 
 

@@ -191,6 +191,7 @@ var faint = function(faintedPkn) {
 
             if (pokemonFound === true) {
                 console.log('\u2686 ' + currentPlayer.name + ' sent out ' + currentPlayerPokemon.name);
+                playerPokemonImageContainer.style.backgroundPosition = currentPlayerPokemon.bgPosition;
                 actionSelect();
             } else {
                 console.log('ERROR - Invalid pokemon chosen');
@@ -290,7 +291,6 @@ var battle = function(player, enemy) {
         console.log('\u2686 ' + enemy.name + ' sent out ' + currentEnemyPokemon.name);
         console.log('\u2686 ' + player.name + ' sent out ' + currentPlayerPokemon.name);
 
-        updatePokemonImage(currentPlayerPokemon);
 
         // Battle loop
         do {

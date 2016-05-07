@@ -1,0 +1,17 @@
+body { background: #24272D; }
+h1 { padding: 50px; text-align: center; color: #ddd; }
+
+
+#pokemon-battle { width: 300px; height: 270px; border: 1px solid #EFEFEF; }
+#enemy-pokemon-image { width: 70px; position: absolute; top: 50px; right: 50px; }
+.enemy-pokemon-battle-info { text-transform: uppercase; font-size: 10px; }
+
+#player-pokemon-image-container {
+    background-image: url('../resources/fire-red-pokemon-sprite.png');
+    width: 64px;
+    height: 64px;
+    background-position: -1px -1px;
+}
+#enemy-pokemon-image-container {
+
+}
