@@ -13,6 +13,11 @@ var playerPokemonLevel = document.getElementById('player-pokemon-level');
 var playerPokemonHpBar = document.getElementById('player-pokemon-hp-bar');
 var playerPokemonHp = document.getElementById('player-pokemon-hp');
 
+var battleMenuFight = document.getElementById('battle-menu-fight');
+var battleMenuBag = document.getElementById('battle-menu-bag');
+var battleMenuPokemon = document.getElementById('battle-menu-pokemon');
+var battleMenuRun = document.getElementById('battle-menu-run');
+
 
 var chosenElement = undefined, playerPokemonImage;
 
@@ -48,18 +53,12 @@ var updatePokemonImage = function(pkmn, player) {
 }
 
 
-
-
-
-var numberTest = 3;
-var baseNumber = 0;
-
 var baseX, columnX, spriteX, rowY, spriteY,
     check75, check15, check3,
     tileSizeX = 161;
     tileSizeY = 65;
 
-var mapToSprite = function(idNumber) {
+var mapToSprite = function(idNumber, player) {
 
     check75 = idNumber % 75,
     check15 = idNumber % 15,
@@ -119,6 +118,10 @@ var mapToSprite = function(idNumber) {
         spriteY += tileSizeY * (check3 - 1);
     }
 
+    if (player === true) {
+        spriteX += 65;
+    }
+
 
     spriteX *= -1;
     spriteY *= -1;
@@ -128,3 +131,7 @@ var mapToSprite = function(idNumber) {
 }
 
 // playerPokemonImageContainer.style.backgroundPosition =  mapToSprite(004);
+
+battleMenuFight.addEventListener('click', function() {
+    // Show move select options
+}, false)

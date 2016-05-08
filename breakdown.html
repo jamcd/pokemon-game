@@ -11,35 +11,50 @@
 
     <div id="pokemon-battle">
         <div id="battle-enemy">
-            <div id="enemy-pokemon-image-container">
-
-            </div>
+            <div id="enemy-pokemon-image-container"></div>
             <div class="enemy-pokemon-battle-info">
-                <div id="enemy-pokemon-name"></div>
-                <div id="enemy-pokemon-level"></div>
-                <div id="enemy-pokemon-hp-bar"></div>
+                <div id="enemy-pokemon-name">Bulbasaur</div>
+                <div id="enemy-pokemon-level">Lv30</div>
+                <div class="player-pokemon-hp-bar-container">
+                    <div class="enemy-pokemon-hp-bar">
+                        <span id="enemy-pokemon-hp-bar-inner"></span>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="battle-player">
-            <div id="player-pokemon-image-container">
-
-            </div>
+            <div id="player-pokemon-image-container"></div>
             <div class="player-pokemon-battle-info">
-                <div id="player-pokemon-name"></div>
-                <div id="player-pokemon-level"></div>
-                <div id="player-pokemon-hp-bar"></div>
-                <div id="player-pokemon-hp"></div>
+                <span id="player-pokemon-name">Charmander</span>
+                <span id="player-pokemon-level">Lv20</span>
+                <div class="player-pokemon-hp-bar-container">
+                    <div class="player-pokemon-hp-bar">
+                        <span id="player-pokemon-hp-bar-inner"></span>
+                    </div>
+                </div>
+                <div id="player-pokemon-hp">36/70</div>
             </div>
         </div>
-        <div id="battle-screen-bottom">
-            <div id="battle-dialog">
-
+        <div id="battle-screen-bottom-container">
+            <div id="battle-screen-bottom">
+                <div id="battle-dialog">
+                    <p>What will</p>
+                    <p>BLASTOISE do?</p>
+                </div>
             </div>
-            <div id="battle-menu">
-                <div id="battle-menu-fight">FIGHT</div>
-                <div id="battle-menu-bag">BAG</div>
-                <div id="battle-menu-pokemon">POKEMON</div>
-                <div id="battle-menu-run">RUN</div>
+
+            <div id="battle-move-options" class="white-battle-menu-container">
+                <div class="battle-move" id="battle-move-one"></div>
+                <div class="battle-move" id="battle-move-two"></div>
+                <div class="battle-move" id="battle-move-three"></div>
+                <div class="battle-move" id="battle-move-four"></div>
+            </div>
+
+            <div id="battle-menu" class="white-battle-menu-container">
+                <div class="battle-menu-item" id="battle-menu-fight">FIGHT</div>
+                <div class="battle-menu-item" id="battle-menu-bag">BAG</div>
+                <div class="battle-menu-item" id="battle-menu-pokemon">POKEMON</div>
+                <div class="battle-menu-item" id="battle-menu-run">RUN</div>
             </div>
         </div>
     </div>

@@ -17,7 +17,7 @@ var Pokemon = function(name, id, baseHp, type, naturalMoves, speed, owner) {
     this.id = id;
     // type needs to be able to deal with arrays for hybrids
     this.type = type;
-    this.bgPosition = mapToSprite(id);
+    this.bgPosition = mapToSprite(id, true); // Shouldn't always be true?
     this.naturalMoves = naturalMoves;
     this.moveSet = {};
     this.baseHp = baseHp;
